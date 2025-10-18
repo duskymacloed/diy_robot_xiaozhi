@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hướng Dẫn DIY Robot AI Xiaozhi - Làm Robot Thông Minh Tại Nhà</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f0f4f8, #d9e2ec, #f0f4f8, #e2eafc);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            color: #333;
+        }
+        @keyframes gradient {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease-out;
+        }
+        h2 {
+            color: #2980b9;
+            cursor: pointer;
+            padding: 10px;
+            background: #ecf0f1;
+            border-radius: 8px;
+            transition: background 0.3s, color 0.3s;
+            margin: 20px 0 0;
+        }
+        h2:hover {
+            background: #3498db;
+            color: #fff;
+        }
+        .step-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            padding: 0 10px;
+        }
+        .step.active .step-content {
+            max-height: 2000px; /* Increased for more content */
+            padding: 10px;
+        }
+        .intro {
+            font-style: italic;
+            color: #555;
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeIn 1.5s ease-in;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            background: #f9f9f9;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        ul li:hover {
+            transform: translateY(-5px);
+        }
+        ul li img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            margin-right: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        a {
+            color: #e74c3c;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #c0392b;
+            text-decoration: underline;
+        }
+        img.main-img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            animation: zoomIn 1s ease-out;
+        }
+        iframe {
+            display: block;
+            margin: 20px auto;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .tip {
+            background-color: #e8f4fd;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            margin: 20px 0;
+            border-radius: 8px;
+            animation: slideInLeft 1s ease-out;
+        }
+        .conclusion {
+            text-align: center;
+        }
+        .conclusion img {
+            width: 100px;
+            height: auto;
+            margin: 10px;
+            border-radius: 8px;
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const steps = document.querySelectorAll('.step h2');
+            steps.forEach(step => {
+                step.addEventListener('click', function() {
+                    const parent = this.parentElement;
+                    parent.classList.toggle('active');
+                    // Close other steps
+                    document.querySelectorAll('.step').forEach(other => {
+                        if (other !== parent) other.classList.remove('active');
+                    });
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Hướng Dẫn DIY Robot AI Xiaozhi - Làm Robot Thông Minh Tại Nhà</h1>
+        
+        <p class="intro">Chào mọi người! Dạo này trend Xiaozhi và các chatbot AI đang hot rần rần, mở ra vô vàn ý tưởng sáng tạo thú vị. Một trong số đó là robot Otto AI – phiên bản nâng cấp từ nguồn mở của Xiaozhi, tích hợp thêm servo để robot có thể di chuyển linh hoạt, tạo cảm giác sinh động và vui nhộn như một người bạn thực thụ. Trên Shopee, con robot này được bán với giá khoảng 1,3 triệu đồng, khá "chát" với nhiều người. Vì vậy, hôm nay mình sẽ hướng dẫn chi tiết cách tự làm (DIY) con robot này tại nhà, vừa tiết kiệm chi phí, vừa học hỏi thêm về điện tử và lập trình. Hãy cùng bắt đầu nhé!</p>
+        
+        <img class="main-img" src="https://i.ytimg.com/vi/UiRJdstlnDo/maxresdefault.jpg" alt="Hình ảnh robot Otto AI từ góc nghiêng, hiển thị rõ màn hình TFT và các khớp nối servo.">
+        
+        <div class="step">
+            <h2>Bước 1: Chuẩn Bị Linh Kiện</h2>
+            <div class="step-content">
+                <p>Đầu tiên, bạn cần mua đầy đủ linh kiện theo danh sách dưới đây. Mình đã chọn các link từ Shopee uy tín, giá cả phải chăng. Tổng chi phí ước tính khoảng 500-700k, rẻ hơn nhiều so với mua sẵn!</p>
+                <ul>
+                    <li><img src="https://m.media-amazon.com/images/I/71uCKrurMvL.jpg" alt="Mạch Esp32S3">Mạch Esp32S3: <a href="https://s.shopee.vn/gGqipa9cP" target="_blank">Mua ngay</a></li>
+                    <li><img src="https://m.media-amazon.com/images/I/51Y1MHwTaeL._UF1000,1000_QL80_.jpg" alt="Màn TFT 1.54”">Màn TFT 1.54”: <a href="https://s.shopee.vn/1BD7JkYFbW" target="_blank">Mua ngay</a></li>
+                    <li><img src="https://m.media-amazon.com/images/I/715m7GBVEcL.jpg" alt="Mạch khuếch đại âm thanh MAX98357">Mạch khuếch đại âm thanh MAX98357: <a href="https://s.shopee.vn/10th7RYswV" target="_blank">Mua ngay</a></li>
+                    <li><img src="https://m.media-amazon.com/images/I/617CsUEiZuL.jpg" alt="Loa 1w">Loa 1w: <a href="https://s.shopee.vn/BKa7uc3dM" target="_blank">Mua ngay</a></li>
+                    <li><img src="https://m.media-amazon.com/images/I/71+H7sa1qlL.jpg" alt="Module microphone inmp441">Module microphone inmp441: <a href="https://s.shopee.vn/119vbcgyL" target="_blank">Mua ngay</a></li>
+                    <li><img src="https://m.media-amazon.com/images/I/41FMwp+jJJL._UF894,1000_QL80_.jpg" alt="Mạch sạc tích hợp tăng áp tp4650">Mạch sạc tích hợp tăng áp tp4650: <a href="https://s.shopee.vn/VxQWWamxS" target="_blank">Mua ngay</a></li>
+                    <li><img src="https://i.ebayimg.com/images/g/vIYAAeSw95loiHw7/s-l1200.jpg" alt="6 servo">6 servo: <a href="https://s.shopee.vn/Le0KDbQIR" target="_blank">Mua ngay</a></li>
+                    <li><img src="https://m.media-amazon.com/images/I/51nL1+tbz6L._UF1000,1000_QL80_.jpg" alt="Pin lipo 400mah">Pin lipo 400mah: <a href="https://s.shopee.vn/2B5eVaURZo" target="_blank">Mua ngay</a></li>
+                    <li><img src="https://www.sparkfun.com/media/catalog/product/cache/a793f13fd3d678cea13d28206895ba0c/0/9/09609-01.jpg" alt="Công tắc trượt">Công tắc trượt: <a href="https://s.shopee.vn/20mEJHV4un" target="_blank">Mua ngay</a></li>
+                    <li><img src="https://m.media-amazon.com/images/I/41-iQFK49DL._AC_UF1000,1000_QL80_.jpg" alt="Điện trở 1k ohm">Điện trở 1k ohm: <a href="https://s.shopee.vn/2ViUuCTAtu" target="_blank">Mua ngay</a></li>
+                    <li><img src="https://m.media-amazon.com/images/I/314qzdhuBfL._UF1000,1000_QL80_.jpg" alt="Tụ gốm 104">Tụ gốm 104: <a href="https://s.shopee.vn/2LP4htToEt" target="_blank">Mua ngay</a></li>
+                    <li><img src="https://m.media-amazon.com/images/I/714tyNBxvXL._AC_UF894,1000_QL80_.jpg" alt="Bóng led">Bóng led: <a href="https://s.shopee.vn/1VpxiMWyvk" target="_blank">Mua ngay</a></li>
+                    <li><img src="https://down-vn.img.susercontent.com/file/vn-11134207-820l4-mf8fvg9tczkee2.webp" alt="Vỏ otto">Vỏ otto: <a href="https://s.shopee.vn/AUlGizL1O7" target="_blank">Mua ngay</a></li>
+                    <li><img src="https://down-vn.img.susercontent.com/file/cn-11134207-7r98o-lxxu4z1mablxa5.jpg" alt="Dây hàn">Dây hàn: <a href="https://s.shopee.vn/2qLVMlNZ3A" target="_blank">Mua ngay</a></li>
+                    <li><img src="https://down-vn.img.susercontent.com/file/b0ccd52670cb165cf08f7efbf9e76c33.webp" alt="PCB hàn">PCB hàn: <a href="https://s.shopee.vn/1BDoLzqhFc" target="_blank">Mua ngay</a></li>
+                </ul>
+                <p class="tip">Mẹo: Kiểm tra kỹ mô tả sản phẩm và đánh giá từ người mua trước để tránh hàng kém chất lượng. Sau khi đặt hàng, chờ khoảng 1-2 tuần để nhận đủ nhé!</p>
+            </div>
+        </div>
+        
+        <div class="step">
+            <h2>Bước 2: Xem Trước Video Hướng Dẫn</h2>
+            <div class="step-content">
+                <p>Trong lúc chờ linh kiện về, hãy xem video này để nắm tổng quan quy trình. Video chi tiết và dễ theo dõi lắm!</p>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/dWcRow4sTFA" title="Hướng dẫn DIY Robot Otto AI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </div>
+        
+        <div class="step">
+            <h2>Bước 3: Chuẩn Bị Dụng Cụ DIY</h2>
+            <div class="step-content">
+                <p>Để lắp ráp an toàn và chuyên nghiệp, bạn cần các dụng cụ sau: thảm kỹ thuật (để tránh tĩnh điện), mỏ hàn, bùi nhùi vệ sinh mỏ hàn, thiếc hàn chất lượng tốt, nhíp, kéo, kìm cắt. Nếu mới bắt đầu, hãy thực hành hàn trên linh kiện thừa trước nhé!</p>
+            </div>
+        </div>
+        
+        <div class="step">
+            <h2>Bước 4: Hàn Linh Kiện Theo Sơ Đồ</h2>
+            <div class="step-content">
+                <p>Bây giờ là phần thú vị: Hàn các linh kiện theo sơ đồ wiring dưới đây. Hãy cẩn thận với các chân GPIO để tránh chập mạch. Sơ đồ này bao gồm kết nối màn hình TFT, loa, mic, servo và pin.</p>
+                <img class="main-img" src="https://scontent.fsgn5-14.fna.fbcdn.net/v/t1.15752-9/566555079_1532001224664953_4413064688869892470_n.png?_nc_cat=106&ccb=1-7&_nc_sid=9f807c&_nc_ohc=jlQKdlxqsHMQ7kNvwG9lNcv&_nc_oc=Adn-lBCNthmTt2cfSqCeCigOifGiR-uUHfyEg2ZZNZ0r-mQI21bQ0OIkOmOSEfZ4fR8bVxRmc1JsqhYvIhlg-MuW&_nc_zt=23&_nc_ht=scontent.fsgn5-14.fna&oh=03_Q7cD3gHhIje7mSnvqn-WkxU5cqC2FlLQUBm6xsRqldWZo3HpIw&oe=691A6E72" alt="Sơ đồ wiring chi tiết cho robot Otto AI, hiển thị kết nối giữa ESP32S3, màn hình TFT ST7789, loa, mic INMP441, servo mg90s và các linh kiện khác.">
+                <p class="tip">Lưu ý: Kiểm tra lại kết nối hai lần trước khi cấp nguồn để tránh hỏng linh kiện. Nếu gặp khó khăn, tham khảo video ở trên!</p>
+            </div>
+        </div>
+        
+        <div class="step">
+            <h2>Bước 5: Nạp Code Và Lắp Vỏ</h2>
+            <div class="step-content">
+                <p>Sau khi hàn xong, nạp code theo hướng dẫn trong video. Khéo léo nhét linh kiện vào vỏ để robot gọn gàng. Nếu bạn có máy in 3D, hãy in vỏ tùy chỉnh từ file này để cá nhân hóa hơn:</p>
+                <a href="https://drive.google.com/drive/folders/1ZsRzN1qZmmgNnhOgo56bDofgDwAMm9MJ?usp=drive_link" target="_blank">Tải file in 3D vỏ robot</a>
+            </div>
+        </div>
+        
+        <div class="step">
+            <h2>Bước 6: Flash Firmware</h2>
+            <div class="step-content">
+                <p>Chọn phiên bản firmware phù hợp với ngôn ngữ bạn muốn (robot sẽ "nói" theo ngôn ngữ này):</p>
+                <ul>
+                    <li>Tiếng Anh: <a href="https://drive.google.com/drive/folders/10_NEiAgGJA_Q62noL1ppeNDboqoQFDPr?usp=drive_link" target="_blank">Tải file bin</a></li>
+                    <li>Tiếng Việt: <a href="https://drive.google.com/drive/folders/1lYx61iHRo8-R3GCm2uhYku9OZaOTW13B?usp=drive_link" target="_blank">Tải file bin</a></li>
+                </ul>
+                <p class="tip">Sử dụng công cụ như ESPTool để flash firmware vào ESP32S3. Nếu robot không hoạt động, kiểm tra nguồn pin và kết nối servo.</p>
+            </div>
+        </div>
+        
+        <h2>Kết Luận</h2>
+        <p class="conclusion">Chúc mừng! Bạn đã tự làm được một con robot AI Xiaozhi siêu cute và thông minh. Nếu thấy hướng dẫn hữu ích, hãy thử làm ngay và chia sẻ thành quả nhé. Nếu bận rộn hoặc không tự tin DIY, bạn có thể mua sẵn tại shop này để ủng hộ:</p>
+        <p class="conclusion"><img src="https://image.lceda.cn/oshwhub/pullImage/aff17efc03604f62aef71f51c6d3ffb1.jpg" alt="Robot Otto AI làm sẵn"><a href="https://s.shopee.vn/9zpCsdvi7w" target="_blank">Mua robot Otto AI sẵn</a></p>
+        
+        <p>Nếu có thắc mắc hoặc gặp vấn đề gì, hãy comment bên dưới nhé! Mình sẽ trả lời sớm nhất có thể. Happy DIY! 🤖✨</p>
+    </div>
+</body>
+</html>
